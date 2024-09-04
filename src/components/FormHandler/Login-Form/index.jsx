@@ -1,26 +1,38 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import ButtonType from '../../Button-Type';
+import useNetwork from '../../../hooks/useNetwork';
 import InputType from '../../Input-Type';
 import { ArrowRight } from 'lucide-react';
-import ButtonType from '../../Button-Type';
 
 const initialState = {
-    username: '',
-    password: '',
+    username: 'emilys',
+    password: 'emilyspass',
+    expiresInMins: 1,
 };
 
 const LoginForm = () => {
+    const navigate = useNavigate();
     const [login, setLogin] = useState(structuredClone(initialState));
+    const { apiHandler, data } = useNetwork();
 
     function inputHandler(e) {
         const name = e.target.name;
         const value = e.target.value;
-        setLogin((prevState) => ({ ...prevState, [name]: value }));
+        // setLogin((prevState) => ({ ...prevState, [name]: value }));
     }
-    function loginFormHandler(e) {
+    async function loginFormHandler(e) {
         e.preventDefault();
-        console.log(login);
+        const response = await apiHandler('auth/login', 'POST', login);
+        console.log('response', response);
     }
 
+    if (data) {
+        console.log({ data });
+        localStorage.setItem('token', data?.token);
+        localStorage.setItem('refreshToken', data?.refreshToken);
+        navigate('/');
+    }
     return (
         <form className="mt-8" onSubmit={loginFormHandler}>
             <div className="space-y-5">

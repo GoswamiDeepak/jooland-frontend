@@ -10,7 +10,7 @@ import { FaCheck } from 'react-icons/fa6';
 const Login = () => {
     return (
         <div className="grid grid-cols-1 lg:grid-cols-2">
-            <section className="relative flex items-end px-4 pb-10 pt-60 sm:px-6 sm:pb-16 md:justify-center lg:px-8 lg:pb-24">
+            <section className="relative flex items-end px-4 pb-10 pt-60 sm:px-6 sm:pb-16 sm:hidden md:justify-center md:hidden lg:px-8 lg:pb-24 lg:block">
                 <div className="absolute inset-0">
                     <img
                         className="h-full w-full rounded-md object-cover object-center"

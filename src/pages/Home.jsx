@@ -1,9 +1,24 @@
-import React from 'react'
+import React, { useEffect } from 'react';
+import useNetwork from '../hooks/useNetwork';
+import { Navbar } from '../components/Navbar';
+import { Product } from '../components/Product';
 
 const Home = () => {
-  return (
-    <div>Home</div>
-  )
-}
+    const { apiHandler, data, isLoading, error } = useNetwork();
+    useEffect(() => {
+        apiHandler('auth/me');
+    }, []);
 
-export default Home
+    if (isLoading) return <div>Loading...</div>;
+
+    if (data) {
+        return (
+            <>
+                <Navbar />
+                <Product />
+            </>
+        );
+    }
+};
+
+export default Home;
