@@ -14,7 +14,6 @@ const Home = () => {
     if (data) {
         return (
             <>
-                <Navbar />
                 <Product />
             </>
         );
