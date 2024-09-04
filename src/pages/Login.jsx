@@ -6,14 +6,15 @@ import { Link } from 'react-router-dom';
 import ButtonType from '../components/Button-Type';
 import LoginForm from '../components/FormHandler/Login-Form';
 import { FaCheck } from 'react-icons/fa6';
+
 const Login = () => {
     return (
         <div className="grid grid-cols-1 lg:grid-cols-2">
             <section className="relative flex items-end px-4 pb-10 pt-60 sm:px-6 sm:pb-16 md:justify-center lg:px-8 lg:pb-24">
                 <div className="absolute inset-0">
                     <img
-                        className="h-full w-full rounded-md object-cover "
-                        src="https://images.pexels.com/photos/27703479/pexels-photo-27703479/free-photo-of-a-ferris-wheel-is-in-the-middle-of-a-city.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+                        className="h-full w-full rounded-md object-cover object-center"
+                        src="https://images.pexels.com/photos/5632379/pexels-photo-5632379.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                         alt=""
                     />
                 </div>
