@@ -1,7 +1,21 @@
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
+import Home from './pages/Home';
+import Login from './pages/Login';
+
 function App() {
+    const router = createBrowserRouter([
+        {
+            path: '/',
+            element: <Home />,
+        },
+        {
+            path: '/login',
+            element: <Login />,
+        },
+    ]);
     return (
         <>
-            <h1>Welcome Abroud.</h1>
+            <RouterProvider router={router} />
         </>
     );
 }
