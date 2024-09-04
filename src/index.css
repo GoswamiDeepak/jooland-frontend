@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.font-color {
+    color: #e7b2e4;
+}
+.bg-color {
+    background-color: #b2b5ba;
+}
+.bg-color2 {
+    background-color: #808581;
+}

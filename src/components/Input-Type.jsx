@@ -1,18 +1,27 @@
 import React, { useId } from 'react';
 
-const InputType = ({ type, placeholder, name, label }) => {
+const InputType = ({
+    type,
+    placeholder,
+    name,
+    label,
+    value,
+    onInputFunc = () => {},
+}) => {
     const id = useId();
     const resetPassword = () => {
         if (type === 'password') {
-            return <a
-            href="#"
-            title=""
-            className="text-sm font-semibold text-black hover:underline">
-            {' '}
-            Forgot password?{' '}
-        </a>
+            return (
+                <a
+                    href="#"
+                    title=""
+                    className="text-sm font-semibold text-black hover:underline">
+                    {' '}
+                    Forgot password?{' '}
+                </a>
+            );
         }
-    }
+    };
     return (
         <div>
             <div className="flex items-center justify-between">
@@ -30,6 +39,8 @@ const InputType = ({ type, placeholder, name, label }) => {
                     name={name}
                     type={type}
                     placeholder={placeholder}
+                    value={value}
+                    onChange={onInputFunc}
                 />
             </div>
         </div>
