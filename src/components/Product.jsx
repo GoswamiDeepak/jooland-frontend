@@ -2,7 +2,6 @@ import React from 'react';
 import { ChevronDown } from 'lucide-react';
 import { Card } from './Card';
 
-
 const filters = [
     {
         id: 'color',
@@ -41,42 +40,46 @@ const filters = [
     },
 ];
 
+const MobileFilter = () => {
+    return (
+        <div className="mt-6 flex items-center  pt-2 md:mt-0 md:space-x-4  md:pt-0">
+            <button
+                type="button"
+                className="hidden items-center rounded-md px-3 py-2 text-sm font-semibold text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black lg:inline-flex">
+                Sort <ChevronDown className="ml-2 h-4 w-4" />
+            </button>
+            <button
+                type="button"
+                className="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black lg:hidden">
+                Category <ChevronDown className="ml-2 h-4 w-4" />
+            </button>
+            <button
+                type="button"
+                className="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black lg:hidden">
+                Color <ChevronDown className="ml-2 h-4 w-4" />
+            </button>
+            <button
+                type="button"
+                className="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black lg:hidden">
+                Size <ChevronDown className="ml-2 h-4 w-4" />
+            </button>
+        </div>
+    );
+};
+
 export function Product() {
-   
     return (
         <section className="w-full">
             <div className="mx-auto max-w-7xl px-2 py-10 lg:px-10">
-                {/* Top */}
                 <div className="md:flex md:flex-row md:items-start md:justify-between">
                     <div>
                         <h1 className="text-xl font-bold">Products</h1>
                     </div>
-                    <div className="mt-6 flex items-center  pt-2 md:mt-0 md:space-x-4  md:pt-0">
-                        <button
-                            type="button"
-                            className="hidden items-center rounded-md px-3 py-2 text-sm font-semibold text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black lg:inline-flex">
-                            Sort <ChevronDown className="ml-2 h-4 w-4" />
-                        </button>
-                        <button
-                            type="button"
-                            className="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black lg:hidden">
-                            Category <ChevronDown className="ml-2 h-4 w-4" />
-                        </button>
-                        <button
-                            type="button"
-                            className="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black lg:hidden">
-                            Color <ChevronDown className="ml-2 h-4 w-4" />
-                        </button>
-                        <button
-                            type="button"
-                            className="inline-flex items-center rounded-md px-3 py-2 text-sm font-semibold text-black focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black lg:hidden">
-                            Size <ChevronDown className="ml-2 h-4 w-4" />
-                        </button>
-                    </div>
+                    <MobileFilter />
                 </div>
                 <hr className="my-8" />
                 <div className="lg:grid lg:grid-cols-12 lg:gap-x-6">
-                    <div className="hidden space-y-6 divide-y lg:col-span-3 lg:block">
+                    <div className="hidden space-y-6 divide-y lg:block lg:col-span-3 lg:sticky lg:top-0 lg:max-h-screen lg:overflow-y-auto">
                         {filters.map((filter) => (
                             <div key={filter.id} className="pt-6">
                                 <h3 className="text-lg font-semibold text-gray-900">
