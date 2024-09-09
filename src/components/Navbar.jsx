@@ -121,7 +121,7 @@ export function Navbar() {
         } else {
             return (
                 <Link to="/login" className="flex grow justify-end">
-                    <ButtonType className="rounded-md border border-black px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black ">
+                    <ButtonType className="rounded-lg border-2 border-black px-3 py-2 text-sm font-semibold text-black shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black ">
                         Log In
                     </ButtonType>
                 </Link>

@@ -3,6 +3,7 @@ import useNetwork from '../hooks/useNetwork';
 import { Product } from '../components/Product';
 import { useDispatch } from 'react-redux';
 import { fetchProduct } from '../slices/Product/productSlice';
+import Loader from '../components/Loader';
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -17,7 +18,7 @@ const Home = () => {
         fetchData();
     }, []);
 
-    if (isLoading) return <div>Loading...</div>;
+    if (isLoading) return <Loader />;
 
     if (data) {
         return (
