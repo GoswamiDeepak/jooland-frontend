@@ -1,25 +1,22 @@
 import { useRef, useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
+import clickOutside from '../../utils/click-outside';
 
 export default function DropDown({ label = '', hidden = false }) {
     const [isOpen, setIsOpen] = useState(false);
     const buttonRef = useRef();
+
     // Toggle visibility of the dropdown
     const toggleDropdown = () => {
         setIsOpen(!isOpen);
     };
 
-    const clickOutside = (e) => {
-        if (buttonRef.current && !buttonRef.current.contains(e.target)) {
-            setIsOpen(false);
-        }
-    };
+    const clickOutsideHandler = clickOutside(buttonRef, setIsOpen);
 
     useEffect(() => {
-        document.addEventListener('mousedown', clickOutside);
-
+        document.addEventListener('mousedown', clickOutsideHandler);
         return () => {
-            document.removeEventListener('mousedown', clickOutside);
+            document.removeEventListener('mousedown', clickOutsideHandler);
         };
     }, []);
 

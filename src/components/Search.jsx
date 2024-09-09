@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import Input from './Input'; // Assuming you have an Input component
 import { CiSearch } from 'react-icons/ci';
+import clickOutside from '../utils/click-outside';
 
 const Search = () => {
     const [isSearchInputVisible, setIsSearchInputVisible] = useState(false);
@@ -16,19 +17,17 @@ const Search = () => {
     };
 
     // Detect click outside the input box to close it
-    const handleClickOutside = (e) => {
-        if (searchRef.current && !searchRef.current.contains(e.target)) {
-            setIsSearchInputVisible(false); // Hide input
-            console.log('click outside ');
-        }
-    };
+    const clickOutsideHandler = clickOutside(
+        searchRef,
+        setIsSearchInputVisible
+    );
 
     useEffect(() => {
         // Add event listener for click outside
-        document.addEventListener('mousedown', handleClickOutside);
+        document.addEventListener('mousedown', clickOutsideHandler);
         return () => {
             // Clean up event listener on unmount
-            document.removeEventListener('mousedown', handleClickOutside);
+            document.removeEventListener('mousedown', clickOutsideHandler);
         };
     }, []);
 
