@@ -7,6 +7,6 @@ export default function ButtonType({
     return (
         <button className={className} type={type} onClick={onClickHandler}>
             {children}
-        </button>
+        </button> 
     );
 }

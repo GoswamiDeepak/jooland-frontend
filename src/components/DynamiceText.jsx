@@ -1,8 +1,8 @@
 import React from 'react';
 
-const DynamiceText = ({ elementType, text, children, classType }) => {
+const DynamiceText = ({ elementType, children, style }) => {
     const Tag = elementType;
-    return <Tag className={classType}>{children}</Tag>;
+    return <Tag className={style}>{children}</Tag>;
 };
 
 export default DynamiceText;

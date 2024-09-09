@@ -2,6 +2,7 @@ import React from 'react';
 import { ChevronDown } from 'lucide-react';
 import { Card } from './Card';
 
+
 const filters = [
     {
         id: 'color',
@@ -41,6 +42,7 @@ const filters = [
 ];
 
 export function Product() {
+   
     return (
         <section className="w-full">
             <div className="mx-auto max-w-7xl px-2 py-10 lg:px-10">
