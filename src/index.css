@@ -1,7 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+* {
+    color: #4a4a4a;
+    box-sizing: border-box;
+    font-family: 'Playfair Display', serif;
+    font-family: 'DM Sans', sans-serif;
+}
 .font-color {
     color: #e7b2e4;
 }
@@ -10,4 +18,42 @@
 }
 .bg-color2 {
     background-color: #808581;
+}
+
+/* Container for transitioning the input */
+.transition-container {
+    display: inline-block;
+    overflow: hidden;
+    transition: width 1s ease, opacity 0.3s ease; /* Smooth transition for width and opacity */
+}
+
+/* Hidden state of the input */
+.transition-container.hidden {
+    width: 0;
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* Visible state of the input */
+.transition-container.visible {
+    /* Input width when visible */
+    /* width: 250px;  */
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Style for the input itself */
+.search-input {
+    flex: 1;
+    height: 40px;
+    background-color: #f0f0f0;
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: all 1s ease; /* Smooth focus transitions */
+}
+
+.search-input:focus {
+    border-color: #000; /* Darken border on focus */
 }

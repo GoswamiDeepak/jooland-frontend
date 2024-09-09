@@ -1,5 +1,7 @@
 import axios from 'axios';
+
 import { base_url } from '../config';
+
 import { memoizeRefreshToken } from './refresh-token';
 
 export const axiosApi = axios.create({
@@ -8,7 +10,7 @@ export const axiosApi = axios.create({
 });
 
 axiosApi.interceptors.request.use(
-    function (config) {
+    (config) => {
         const token = localStorage.getItem('token');
         if (token) {
             config.headers = {
@@ -16,12 +18,9 @@ axiosApi.interceptors.request.use(
                 Authorization: `Bearer ${token}`,
             };
         }
-        // console.log({ config });
         return config;
     },
-    function (error) {
-        return Promise.reject(error);
-    }
+    (error) => Promise.reject(error)
 );
 
 axiosApi.interceptors.response.use(
@@ -38,7 +37,7 @@ axiosApi.interceptors.response.use(
                     authorization: `Bearer ${result?.data?.token}`,
                 };
             }
-            return axios(config);
+            return axiosApi(config);
         }
 
         return Promise.reject(error);

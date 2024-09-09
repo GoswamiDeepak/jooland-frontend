@@ -40,7 +40,7 @@ const products = [
     },
 ];
 
-export default Order = () => {
+export default function Order() {
     return (
         <div className="mx-auto my-4 max-w-4xl md:my-6">
             <div className="overflow-hidden rounded-xl border border-gray-100 shadow">
@@ -165,4 +165,4 @@ export default Order = () => {
             </div>
         </div>
     );
-};
+}
