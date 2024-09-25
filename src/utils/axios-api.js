@@ -5,8 +5,8 @@ import { base_url } from '../config';
 import { memoizeRefreshToken } from './refresh-token';
 
 export const axiosApi = axios.create({
-    // withCredentials: true,
     baseURL: base_url,
+    withCredentials: true,
 });
 
 axiosApi.interceptors.request.use(

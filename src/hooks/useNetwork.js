@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { axiosApi } from '../utils/axios-api';
-
 import toast from 'react-hot-toast';
+import instance from '../utils/axios-withCookie';
 
 export default function useNetwork() {
     const [data, setData] = useState(null);
@@ -9,21 +9,24 @@ export default function useNetwork() {
     const [error, setError] = useState(false);
 
     const apiHandler = useCallback(
-        async (url, method = 'GET', userdata = null) => {
+        async (url, method = 'GET', userdata = null, useCookies = true) => {
             setIsLoading(true);
             const toastId = toast.loading('Loading...');
             try {
-                const responce = await axiosApi({
-                    method,
-                    url,
-                    data: userdata,
-                });
+                const responce = await instance.requestWithCookies(
+                    {
+                        method,
+                        url,
+                        data: userdata,
+                    },
+                    useCookies
+                );
                 toast.success('Successfully');
                 setData(responce?.data);
                 return responce;
             } catch (error) {
                 setError(error.message);
-                toast.error('error!');
+                toast.error(error.response.data.message);
             } finally {
                 setIsLoading(false);
                 toast.dismiss(toastId);

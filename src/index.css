@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 * {
-    color: #4a4a4a;
+    /* color: #4a4a4a; */
     box-sizing: border-box;
     font-family: 'Playfair Display', serif;
     font-family: 'DM Sans', sans-serif;

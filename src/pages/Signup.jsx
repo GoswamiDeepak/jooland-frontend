@@ -4,10 +4,10 @@ import { FaFacebookF } from 'react-icons/fa';
 import DynamiceText from '../components/DynamiceText';
 import { Link } from 'react-router-dom';
 import ButtonType from '../components/Button-Type';
-import LoginForm from '../components/FormHandler/Login-Form';
 import { FaCheck } from 'react-icons/fa6';
+import SignForm from '../components/FormHandler/Signup-Form';
 
-const Login = () => {
+const Signup = () => {
     return (
         <div className="grid grid-cols-1 lg:grid-cols-2">
             <Authsidebar />
@@ -16,21 +16,21 @@ const Login = () => {
                     <DynamiceText
                         elementType="h2"
                         style="text-3xl font-bold leading-tight text-black sm:text-4xl">
-                        Sign In
+                        Sign up
                     </DynamiceText>
 
                     <DynamiceText
                         elementType="p"
-                        classType="mt-2 text-sm text-gray-600">
-                        Don&apos;t have an account?{' '}
+                        style="mt-2 text-sm text-gray-600">
+                        already have an account?{' '}
                         <Link
-                            to="/signup"
+                            to="/login"
                             className="font-semibold text-black transition-all duration-200 hover:underline">
-                            Create a free account
+                            Sign in
                         </Link>
                     </DynamiceText>
 
-                    <LoginForm />
+                    <SignForm />
 
                     <div className="mt-3 space-y-3">
                         <ButtonType
@@ -127,4 +127,4 @@ const Authsidebar = () => {
         </section>
     );
 };
-export default Login;
+export default Signup;

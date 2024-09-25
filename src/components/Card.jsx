@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import DynamiceText from './DynamiceText';
 import ButtonType from './Button-Type';
 import Loader from './Loader';
+import { FixedSizeList } from 'react-window';
 
 export function Card() {
     const productData = useSelector((state) => {
@@ -61,44 +62,40 @@ export function Card() {
 
     return (
         <div className="mx-auto grid w-full max-w-7xl items-center space-y-4 px-2 py-10 md:grid-cols-2 md:gap-6 md:space-y-0 lg:grid-cols-3">
-            {productData?.length ? (
-                productData?.map((product, i) => (
-                    <Link key={product?.id} to={`product/${i + 1}`}>
-                        <div className="rounded-md border">
-                            <img
-                                src={product?.thumbnail}
-                                alt="Laptop"
-                                className="aspect-[16/9] w-full rounded-md md:aspect-auto md:h-[300px] lg:h-[200px]"
-                                loading="lazy"
-                            />
-                            <div className="p-4">
-                                <DynamiceText
-                                    elementType="h1"
-                                    style="inline-flex items-center text-lg font-semibold">
-                                    {product?.title}
-                                </DynamiceText>
-                                <DynamiceText
-                                    elementType="p"
-                                    style="mt-3 text-sm text-gray-600">
-                                    {product?.description}
-                                </DynamiceText>
-                                <div className="mt-4">
-                                    <Tags tag={product?.tags} />
-                                </div>
-                                <Colors />
-                                <Size />
-                                <ButtonType
-                                    type="button"
-                                    className="mt-4 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
-                                    Add to Cart
-                                </ButtonType>
+            {productData?.map((product, i) => (
+                <Link key={product?.id} to={`product/${i + 1}`}>
+                    <div className="rounded-md border">
+                        <img
+                            src={product?.thumbnail}
+                            alt="Laptop"
+                            className="aspect-[16/9] w-full rounded-md md:aspect-auto md:h-[300px] lg:h-[200px]"
+                            loading="lazy"
+                        />
+                        <div className="p-4">
+                            <DynamiceText
+                                elementType="h1"
+                                style="inline-flex items-center text-lg font-semibold">
+                                {product?.title}
+                            </DynamiceText>
+                            <DynamiceText
+                                elementType="p"
+                                style="mt-3 text-sm text-gray-600">
+                                {product?.description}
+                            </DynamiceText>
+                            <div className="mt-4">
+                                <Tags tag={product?.tags} />
                             </div>
+                            <Colors />
+                            <Size />
+                            <ButtonType
+                                type="button"
+                                className="mt-4 w-full rounded-sm bg-black px-2 py-1.5 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+                                Add to Cart
+                            </ButtonType>
                         </div>
-                    </Link>
-                ))
-            ) : (
-                <Loader />
-            )}
+                    </div>
+                </Link>
+            ))}
         </div>
     );
 }
