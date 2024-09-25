@@ -1,5 +1,4 @@
 import { useCallback, useState } from 'react';
-import { axiosApi } from '../utils/axios-api';
 import toast from 'react-hot-toast';
 import instance from '../utils/axios-withCookie';
 

@@ -15,7 +15,7 @@ export function signUpFormHandler(
     return async function (e) {
         e.preventDefault();
         const response = await apiHandler(
-            '/api/v1/user/register',
+            '/user/register',
             'POST',
             state,
             false

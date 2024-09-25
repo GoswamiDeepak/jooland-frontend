@@ -6,43 +6,41 @@ import InputType from '../../Input-Type';
 import { ArrowRight } from 'lucide-react';
 import { useDispatch } from 'react-redux';
 import { loggedIn } from '../../../slices/user/userSlice';
+import { stateHandler } from '../../../utils/stateHandler';
+import { formHandler } from './logic';
 
 const initialState = {
-    username: 'emilys',
-    password: 'emilyspass',
-    expiresInMins: 1,
+    email: '',
+    password: '',
 };
 
 const LoginForm = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [login, setLogin] = useState(structuredClone(initialState));
-    const { apiHandler, data } = useNetwork();
+    const { apiHandler } = useNetwork();
 
-    function inputHandler(e) {
-        const name = e.target.name;
-        const value = e.target.value;
-    }
-    async function loginFormHandler(e) {
-        e.preventDefault();
-        const response = await apiHandler('auth/login', 'POST', login);
-        console.log(response);
-        if (response?.statusText === 'OK') {
-            localStorage.setItem('token', response?.data?.token);
-            localStorage.setItem('refreshToken', response?.data?.refreshToken);
-            dispatch(loggedIn('sending payload'));
-            navigate('/');
-        }
-    }
+    const inputHandler = stateHandler(setLogin);
+
+    const loginFormHandler = formHandler(
+        apiHandler,
+        login,
+        setLogin,
+        initialState,
+        dispatch,
+        navigate,
+        loggedIn
+    );
+
     return (
         <form className="mt-8" onSubmit={loginFormHandler}>
             <div className="space-y-5">
                 <InputType
-                    name="username"
-                    type="text"
-                    placeholder="Enter Your Username"
-                    label="Username"
-                    value={login.username}
+                    name="email"
+                    type="email"
+                    placeholder="Enter Your email"
+                    label="Email"
+                    value={login.email}
                     onInputFunc={inputHandler}
                 />
 

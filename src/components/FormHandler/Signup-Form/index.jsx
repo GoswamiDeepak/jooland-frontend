@@ -16,23 +16,8 @@ const SignForm = () => {
     const [signup, setSignup] = useState(structuredClone(initialState));
     const { apiHandler } = useNetwork();
 
-    // function inputHandler(e) {
-    //     const name = e.target.name;
-    //     const value = e.target.value;
-    //     setSignup((prev) => ({ ...prev, [name]: value }));
-    // }
     const inputHandlerFunc = inputHandler(setSignup);
 
-    // async function loginFormHandler(e) {
-    //     e.preventDefault();
-    //     const response = await apiHandler(
-    //         '/api/v1/user/register',
-    //         'POST',
-    //         signup,
-    //         false
-    //     );
-    //     console.log(response);
-    // }
     const signUpFormHandlerFunc = signUpFormHandler(
         apiHandler,
         signup,
