@@ -5,15 +5,21 @@ import { useDispatch } from 'react-redux';
 import { fetchProduct } from '../slices/Product/productSlice';
 import Loader from '../components/Loader';
 
+
 const Home = () => {
     const dispatch = useDispatch();
     const { apiHandler, data, isLoading, error } = useNetwork();
 
     useEffect(() => {
         const fetchData = async () => {
-            await apiHandler('auth/me');
-            const responce = await apiHandler('products');
-            dispatch(fetchProduct(responce?.data?.products));
+            // const response = await axios.get('/user');
+            // console.log(response);
+            await apiHandler('/user');
+
+            const responce = await apiHandler('/product');
+            console.log(responce.data.data);
+
+            dispatch(fetchProduct(responce.data.data.products));
         };
         fetchData();
     }, []);

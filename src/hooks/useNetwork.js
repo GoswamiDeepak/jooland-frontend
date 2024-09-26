@@ -12,7 +12,7 @@ export default function useNetwork() {
             setIsLoading(true);
             const toastId = toast.loading('Loading...');
             try {
-                const responce = await instance.requestWithCookies(
+                const responce = await instance(
                     {
                         method,
                         url,

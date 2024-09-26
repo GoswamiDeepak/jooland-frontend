@@ -13,6 +13,7 @@ instance.interceptors.response.use(
     (response) => response, // Pass through successful responses
     async (error) => {
         const originalRequest = error.config;
+        console.log(originalRequest);
 
         // Handle 403 errors (Access Token expiration)
         if (error.response.status === 403 && !originalRequest._retry) {
@@ -21,7 +22,7 @@ instance.interceptors.response.use(
             try {
                 // Attempt to refresh the token using the refresh token cookie
                 const { data } = await axios.post(
-                    `${process.env.REACT_APP_API_BASE_URL}/auth/refresh-token`,
+                    `${base_url}/user/refresh-token`,
                     {},
                     { withCredentials: true }
                 );
@@ -30,7 +31,7 @@ instance.interceptors.response.use(
                 instance.defaults.headers.common[
                     'Authorization'
                 ] = `Bearer ${data.accessToken}`;
-                
+
                 originalRequest.headers[
                     'Authorization'
                 ] = `Bearer ${data.accessToken}`;
@@ -53,11 +54,11 @@ instance.interceptors.response.use(
  * @param {Object} config - Axios request config.
  * @param {boolean} useCookies - Should cookies be included in the request.
  */
-instance.requestWithCookies = (config, useCookies = true) => {
-    return instance({
-        ...config,
-        withCredentials: useCookies, // Conditionally include cookies
-    });
-};
+// instance.requestWithCookies = (config, useCookies = true) => {
+//     return instance({
+//         ...config,
+//         withCredentials: useCookies, // Conditionally include cookies
+//     });
+// };
 
 export default instance;

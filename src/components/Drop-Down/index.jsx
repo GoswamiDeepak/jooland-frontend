@@ -45,18 +45,18 @@ export default function DropDown({ label = '', hidden = false }) {
                 {label === 'sort' && (
                     <>
                         {' '}
-                        <buttton className="block w-full  cursor-pointer hover:font-medium">
+                        <button className="block w-full  cursor-pointer hover:font-medium">
                             Featured
-                        </buttton>
-                        <buttton className="block w-full cursor-pointer hover:font-medium">
+                        </button>
+                        <button className="block w-full cursor-pointer hover:font-medium">
                             Newest
-                        </buttton>
-                        <buttton className="block w-full cursor-pointer hover:font-medium">
+                        </button>
+                        <button className="block w-full cursor-pointer hover:font-medium">
                             Price: High-Low
-                        </buttton>
-                        <buttton className="block w-full cursor-pointer hover:font-medium">
-                            rice: Low-High
-                        </buttton>
+                        </button>
+                        <button className="block w-full cursor-pointer hover:font-medium">
+                            price: Low-High
+                        </button>
                     </>
                 )}
             </div>
