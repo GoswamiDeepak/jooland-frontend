@@ -1,8 +1,12 @@
-import React, { useState } from 'react';
-import { ChevronDown } from 'lucide-react';
-import { Card } from './Card';
-import DynamiceText from './DynamiceText';
-import DropDown from './Drop-Down';
+import React, { useEffect, useState } from 'react';
+import { Card } from '../Card';
+import DynamiceText from '../DynamiceText';
+import DropDown from '../Drop-Down';
+import Pagination from '../Pagination';
+import useNetwork from '../../hooks/useNetwork';
+import { useDispatch } from 'react-redux';
+import { fetchProduct } from '../../slices/Product/productSlice';
+import Loader from '../Loader';
 
 const filters = [
     {
@@ -53,8 +57,22 @@ const MobileFilter = () => {
     );
 };
 
+const limit = 5;
 export function Product() {
-    console.log('render...');
+    const dispatch = useDispatch();
+    const { apiHandler, isLoading } = useNetwork();
+
+    const [page, setPage] = useState(1);
+    const pageHandler = (value) => {
+        setPage(value);
+    };
+
+    useEffect(() => {
+        (async function () {
+            const responce = await apiHandler(`/product?page=${page}&limit=${limit}`);
+            dispatch(fetchProduct(responce.data.data));
+        })();
+    }, [page]);
 
     return (
         <section className="w-full">
@@ -99,7 +117,18 @@ export function Product() {
                         ))}
                     </div>
                     <div className="h-[400px] w-full rounded-lg border-2 border-dashed px-2 lg:col-span-9 lg:h-full">
-                        <Card />
+                        {isLoading ? (
+                            <Loader />
+                        ) : (
+                            <>
+                                <Card />
+                                <Pagination
+                                    onPageHandler={pageHandler}
+                                    currentPage={page}
+                                    limit={limit}
+                                />
+                            </>
+                        )}
                     </div>
                 </div>
             </div>

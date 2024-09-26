@@ -56,8 +56,6 @@ const Size = () => {
 };
 
 const Wishlist = ({ toggle }) => {
-    console.log({ toggle });
-
     return (
         <>
             {toggle ? (
@@ -73,6 +71,7 @@ export function Card() {
     const productData = useSelector((state) => {
         return state.product.product;
     });
+
     const [toggle, setToggle] = useState(true);
 
     const toggleHandler = () => {
