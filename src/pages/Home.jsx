@@ -2,13 +2,11 @@ import React, { useEffect } from 'react';
 import useNetwork from '../hooks/useNetwork';
 import { Product } from '../components/Product/index';
 import { useDispatch } from 'react-redux';
-import { fetchProduct } from '../slices/Product/productSlice';
-import Loader from '../components/Loader';
 import { loggedIn } from '../slices/user/userSlice';
 
 const Home = () => {
     const dispatch = useDispatch();
-    const { apiHandler, data, isLoading, error } = useNetwork();
+    const { apiHandler } = useNetwork();
 
     useEffect(() => {
         (async () => {
@@ -17,15 +15,11 @@ const Home = () => {
         })();
     }, []);
 
-    if (isLoading) return <Loader />;
-
-    if (data) {
-        return (
-            <>
-                <Product />
-            </>
-        );
-    }
+    return (
+        <>
+            <Product />
+        </>
+    );
 };
 
 export default Home;

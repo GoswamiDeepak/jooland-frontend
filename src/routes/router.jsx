@@ -1,12 +1,24 @@
 import { createBrowserRouter } from 'react-router-dom';
-import Layout from '../layout';
-import Home from '../pages/Home';
-import Login from '../pages/Login';
-import ProductDetail from '../pages/Product-Detail';
-import Cart from '../pages/cart';
-import Checkout from '../pages/Checkout';
-import Order from '../pages/Order';
-import Signup from '../pages/Signup';
+import { lazy, Suspense } from 'react';
+import Loader from '../components/Loader';
+
+const Layout = lazy(() => import('../layout'));
+const Home = lazy(() => import('../pages/Home'));
+const Login = lazy(() => import('../pages/Login'));
+const ProductDetail = lazy(() => import('../pages/Product-Detail'));
+const Cart = lazy(() => import('../pages/cart'));
+const Checkout = lazy(() => import('../pages/Checkout'));
+const Order = lazy(() => import('../pages/Order'));
+const Signup = lazy(() => import('../pages/Signup'));
+
+// import Layout from '../layout';
+// import Home from '../pages/Home';
+// import Login from '../pages/Login';
+// import ProductDetail from '../pages/Product-Detail';
+// import Cart from '../pages/cart';
+// import Checkout from '../pages/Checkout';
+// import Order from '../pages/Order';
+// import Signup from '../pages/Signup';
 
 export const Router = createBrowserRouter([
     {
@@ -15,31 +27,59 @@ export const Router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <Home />,
+                element: (
+                    <Suspense fallback={<Loader />}>
+                        <Home />
+                    </Suspense>
+                ),
             },
             {
                 path: '/login',
-                element: <Login />,
+                element: (
+                    <Suspense fallback={<Loader />}>
+                        <Login />
+                    </Suspense>
+                ),
             },
             {
                 path: '/signup',
-                element: <Signup />,
+                element: (
+                    <Suspense fallback={<Loader />}>
+                        <Signup />
+                    </Suspense>
+                ),
             },
             {
                 path: '/product/:id',
-                element: <ProductDetail />,
+                element: (
+                    <Suspense fallback={<Loader />}>
+                        <ProductDetail />
+                    </Suspense>
+                ),
             },
             {
                 path: '/cart',
-                element: <Cart />,
+                element: (
+                    <Suspense fallback={<Loader />}>
+                        <Cart />
+                    </Suspense>
+                ),
             },
             {
                 path: '/checkout',
-                element: <Checkout />,
+                element: (
+                    <Suspense fallback={<Loader />}>
+                        <Checkout />
+                    </Suspense>
+                ),
             },
             {
                 path: '/order',
-                element: <Order />,
+                element: (
+                    <Suspense fallback={<Loader />}>
+                        <Order />
+                    </Suspense>
+                ),
             },
         ],
     },

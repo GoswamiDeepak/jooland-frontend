@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import DynamiceText from './DynamiceText';
+import DynamiceText from './Text';
 import ButtonType from './Button-Type';
 import Loader from './Loader';
 import { FixedSizeList } from 'react-window';
