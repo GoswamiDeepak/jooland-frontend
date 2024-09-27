@@ -17,6 +17,7 @@ export function Product() {
 
     const [page, setPage] = useState(1);
     const [sort, setSort] = useState({});
+    const [filter, setFilter] = useState({});
 
     const pageHandler = (value) => {
         setPage(value);
@@ -28,20 +29,50 @@ export function Product() {
         setSort(sortOption);
     };
 
+    const filterHandler = (e, section, option) => {
+        const newFilter = { ...filter };
+        if (e.target.checked) {
+            if (newFilter[section.id]) {
+                newFilter[section.id].push(option.value);
+            } else {
+                newFilter[section.id] = [option.value];
+            }
+        } else {
+            const index = newFilter[section.id].findIndex(
+                (el) => el === option.value
+            );
+            newFilter[section.id].splice(index, 1);
+        }
+        console.log(newFilter);
+        setFilter(newFilter);
+    };
+
     useEffect(() => {
         (async function () {
+            // filter = {"category":["smartphone","laptops"]}
+            // sort = {_sort:"price",_order="desc"}
+            // pagination = {page:1,limit=10}
+
             let queryString = '';
-            const pagination = { page: page, limit: limit };
-            for (let key in pagination) {
-                queryString += `${key}=${pagination[key]}&`;
+
+            for (let key in filter) {
+                const categoryValue = filter[key];
+                if (categoryValue.length) {
+                    queryString += `${key}=${categoryValue.join(',')}&`;
+                }
             }
             for (let key in sort) {
                 queryString += `_${key}=${sort[key]}&`;
             }
+            const pagination = { page: page, limit: limit };
+            for (let key in pagination) {
+                queryString += `${key}=${pagination[key]}&`;
+            }
+
             const responce = await apiHandler(`/product?${queryString}`);
             dispatch(fetchProduct(responce.data.data));
         })();
-    }, [page, sort]);
+    }, [page, sort, filter]);
 
     return (
         <section className="w-full">
@@ -55,7 +86,7 @@ export function Product() {
                 <hr className="my-8" />
                 <div className="lg:grid lg:grid-cols-12 lg:gap-x-6">
                     <div className="hidden space-y-6 divide-y lg:block lg:col-span-3 lg:sticky lg:top-0 lg:max-h-screen lg:overflow-y-auto">
-                        <Filter />
+                        <Filter onFilterHandler={filterHandler} />
                     </div>
                     <div className="h-[400px] w-full rounded-lg border-2 border-dashed px-2 lg:col-span-9 lg:h-full">
                         {isLoading ? (
