@@ -55,6 +55,16 @@ const Size = () => {
     );
 };
 
+const Price = ({ price }) => {
+    return (
+        <div className="mt-5 flex items-center space-x-2">
+            <span className="block text-sm font-semibold">Price : </span>
+            <span className="block cursor-pointer rounded-md border border-gray-300 p-1 px-2 text-xs font-medium">
+                {price}
+            </span>
+        </div>
+    );
+};
 const Wishlist = ({ toggle }) => {
     return (
         <>
@@ -109,6 +119,7 @@ export function Card() {
                         </div>
                         <Colors />
                         <Size />
+                        <Price price={product.price} />
                         <Link to={`product/${product?._id}`}>
                             <ButtonType
                                 type="button"

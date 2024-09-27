@@ -22,14 +22,26 @@ export function Product() {
         setPage(value);
     };
 
+    const sortHandler = (value) => {
+        const { sort, order } = value;
+        const sortOption = { sort, order };
+        setSort(sortOption);
+    };
+
     useEffect(() => {
         (async function () {
-            const responce = await apiHandler(
-                `/product?page=${page}&limit=${limit}`
-            );
+            let queryString = '';
+            const pagination = { page: page, limit: limit };
+            for (let key in pagination) {
+                queryString += `${key}=${pagination[key]}&`;
+            }
+            for (let key in sort) {
+                queryString += `_${key}=${sort[key]}&`;
+            }
+            const responce = await apiHandler(`/product?${queryString}`);
             dispatch(fetchProduct(responce.data.data));
         })();
-    }, [page]);
+    }, [page, sort]);
 
     return (
         <section className="w-full">
@@ -38,7 +50,7 @@ export function Product() {
                     <Text elementType="h1" style="text-xl font-bold">
                         Product
                     </Text>
-                    <MobileFilter />
+                    <MobileFilter onSortFilter={sortHandler} />
                 </div>
                 <hr className="my-8" />
                 <div className="lg:grid lg:grid-cols-12 lg:gap-x-6">

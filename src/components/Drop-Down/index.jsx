@@ -2,8 +2,13 @@ import { useRef, useState, useEffect } from 'react';
 import { ChevronDown } from 'lucide-react';
 import clickOutside from '../../utils/click-outside';
 
-export default function DropDown({ label = '', hidden = false }) {
-    console.log('rendering...');
+export default function DropDown({
+    label = '',
+    hidden = false,
+    options = [],
+    onSortFilter = () => {},
+}) {
+    console.log('rendering... dropdown');
 
     const [isOpen, setIsOpen] = useState(false);
     const buttonRef = useRef();
@@ -44,23 +49,36 @@ export default function DropDown({ label = '', hidden = false }) {
                         ? 'translate-y-0 opacity-100 visible'
                         : '-translate-y-4 opacity-0 invisible'
                 }`}>
-                {label === 'sort' && (
-                    <>
-                        <button className="block w-full  cursor-pointer hover:font-medium">
-                            Featured
+                {options?.map((option) => {
+                    return (
+                        <button
+                            className="block w-full  cursor-pointer hover:font-medium"
+                            key={option.name}
+                            onClick={() => onSortFilter(option)}>
+                            {option?.name}
                         </button>
-                        <button className="block w-full cursor-pointer hover:font-medium">
-                            Newest
-                        </button>
-                        <button className="block w-full cursor-pointer hover:font-medium">
-                            Price: High-Low
-                        </button>
-                        <button className="block w-full cursor-pointer hover:font-medium">
-                            price: Low-High
-                        </button>
-                    </>
-                )}
+                    );
+                })}
             </div>
         </div>
     );
 }
+
+// {
+//     label === 'sort' && (
+//         <>
+//             <button className="block w-full  cursor-pointer hover:font-medium">
+//                 Featured
+//             </button>
+//             <button className="block w-full cursor-pointer hover:font-medium">
+//                 Newest
+//             </button>
+//             <button className="block w-full cursor-pointer hover:font-medium">
+//                 Price: High-Low
+//             </button>
+//             <button className="block w-full cursor-pointer hover:font-medium">
+//                 price: Low-High
+//             </button>
+//         </>
+//     );
+// }
