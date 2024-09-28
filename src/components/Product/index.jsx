@@ -12,11 +12,10 @@ import Loader from '../Loader';
 import Card from '../Card';
 import Pagination from '../Pagination';
 import MobileFilter from '../MobileFilter';
-import Filter from '../Filter';
+import DesktopFilter from '../Desktop-Filter';
 import PriceRangeSlider from '../Price-Range';
 import { total_items } from '../../config';
 import Text from '../Text';
-
 
 export default function Product() {
     const [page, setPage] = useState(1);
@@ -155,7 +154,7 @@ export default function Product() {
                 <hr className="my-8" />
                 <div className="lg:grid lg:grid-cols-12 lg:gap-x-6">
                     <div className="hidden space-y-6 divide-y lg:block lg:col-span-3 lg:sticky lg:top-0 lg:max-h-screen lg:overflow-y-auto">
-                        <Filter onFilterHandler={filterHandler} />
+                        <DesktopFilter onFilterHandler={filterHandler} />
                         <PriceRangeSlider
                             min={Math.floor(priceRange?.minPrice) || ''}
                             max={Math.ceil(priceRange?.maxPrice) || ''}

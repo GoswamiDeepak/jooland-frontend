@@ -57,7 +57,7 @@ const filters = [
     },
 ];
 
-export default function Filter({ onFilterHandler }) {
+export default function DesktopFilter({ onFilterHandler }) {
     return (
         <>
             {filters.map((section) => (
