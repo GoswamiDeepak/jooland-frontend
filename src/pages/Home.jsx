@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import useNetwork from '../hooks/useNetwork';
-import { Product } from '../components/Product/index';
+import Product from '../components/Product/index';
 import { useDispatch } from 'react-redux';
 import { loggedIn } from '../slices/user/userSlice';
 

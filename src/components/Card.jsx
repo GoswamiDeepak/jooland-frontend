@@ -77,7 +77,7 @@ const Wishlist = ({ toggle }) => {
     );
 };
 
-export function Card() {
+export default function Card() {
     const productData = useSelector((state) => {
         return state.product.product;
     });

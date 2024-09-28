@@ -8,7 +8,7 @@ export default function DropDown({
     options = [],
     onSortFilter = () => {},
 }) {
-    console.log('rendering... dropdown');
+    // console.log('rendering... dropdown');
 
     const [isOpen, setIsOpen] = useState(false);
     const buttonRef = useRef();

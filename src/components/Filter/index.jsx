@@ -1,3 +1,6 @@
+import { useState } from 'react';
+
+
 const filters = [
     {
         id: 'category',
@@ -53,6 +56,7 @@ const filters = [
         ],
     },
 ];
+
 export default function Filter({ onFilterHandler }) {
     return (
         <>

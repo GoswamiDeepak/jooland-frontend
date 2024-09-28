@@ -7,6 +7,7 @@ const productSlice = createSlice({
         totalpage: '',
         totalDocument: '',
         product: [],
+        priceRange: {},
     },
     reducers: {
         fetchProduct: (state, action) => {
@@ -14,6 +15,7 @@ const productSlice = createSlice({
             state.totalpage = action.payload.totalPages;
             state.totalDocument = action.payload.totalDocuments;
             state.product = action.payload.products;
+            state.priceRange = action.payload.priceRange;
         },
     },
 });
