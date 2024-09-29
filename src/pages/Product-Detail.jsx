@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import useNetwork from '../hooks/useNetwork';
 import Text from '../components/Text';
 import Loader from '../components/Loader';
 
 export default function ProductDetail() {
+    const navigate = useNavigate();
     const { id } = useParams();
     const { apiHandler, isLoading } = useNetwork();
     const [quantity, setQuantity] = useState(1);
@@ -70,9 +71,11 @@ export default function ProductDetail() {
             },
             'Added to cart'
         );
+        const response = await apiHandler('/cart')
         setSizes('');
         setColors('');
         setQuantity(1);
+        navigate('/cart');
     };
 
     const handleMouseEnterProduct = (imageURL) => {
@@ -96,7 +99,7 @@ export default function ProductDetail() {
     }
 
     return (
-        <div className="mx-auto max-w-7xl px-4 md:px-8 2xl:px-16">
+        <div className="mx-auto max-w-7xl px-4 md:px-8 2xl:px-16"> 
             <div className="pt-8">
                 {/* Breadcrumb and other content */}
                 <div className="flex items-center">

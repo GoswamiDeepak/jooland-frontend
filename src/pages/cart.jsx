@@ -43,15 +43,15 @@ const products = [
 
 export default function Cart() {
     return (
-        <div className="mx-auto max-w-7xl px-2 lg:px-0">
+        <div className="mx-auto max-w-7xl px-4 md:px-8 2xl:px-16">
             <div className="mx-auto max-w-2xl py-8 lg:max-w-7xl">
                 <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                     Shopping Cart
                 </h1>
-                <form className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
+                <div className="mt-12 lg:grid lg:grid-cols-12 lg:items-start lg:gap-x-12 xl:gap-x-16">
                     <section
                         aria-labelledby="cart-heading"
-                        className="rounded-lg bg-white lg:col-span-8">
+                        className="rounded-lg bg-white lg:col-span-8 border px-4">
                         <h2 id="cart-heading" className="sr-only">
                             Items in your shopping cart
                         </h2>
@@ -149,7 +149,7 @@ export default function Cart() {
                     {/* Order summary */}
                     <section
                         aria-labelledby="summary-heading"
-                        className="mt-16 rounded-md bg-white lg:col-span-4 lg:mt-0 lg:p-0">
+                        className="mt-16 rounded-md bg-white lg:col-span-4 lg:mt-0 lg:px-4 border">
                         <h2
                             id="summary-heading"
                             className=" border-b border-gray-200 px-4 py-3 text-lg font-medium text-gray-900 sm:p-4">
@@ -194,8 +194,13 @@ export default function Cart() {
                                 You will save ₹ 3,431 on this order
                             </div>
                         </div>
+                        <button
+                            type="button"
+                            className="h-11 w-full rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black">
+                            Order
+                        </button>
                     </section>
-                </form>
+                </div>
             </div>
         </div>
     );
