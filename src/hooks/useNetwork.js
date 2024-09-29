@@ -8,19 +8,21 @@ export default function useNetwork() {
     const [error, setError] = useState(false);
 
     const apiHandler = useCallback(
-        async (url, method = 'GET', userdata = null, useCookies = true) => {
+        async (
+            url,
+            method = 'GET',
+            userdata = null,
+            message = 'successfully'
+        ) => {
             setIsLoading(true);
             const toastId = toast.loading('Loading...');
             try {
-                const responce = await instance(
-                    {
-                        method,
-                        url,
-                        data: userdata,
-                    },
-                    useCookies
-                );
-                toast.success('Successfully');
+                const responce = await instance({
+                    method,
+                    url,
+                    data: userdata,
+                });
+                toast.success(message);
                 setData(responce?.data);
                 return responce;
             } catch (error) {

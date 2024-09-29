@@ -1,12 +1,14 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Menu, X, ChevronDown, ChevronRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Input from './Input';
 import Search from './Search';
 import { CiShoppingCart } from 'react-icons/ci';
 import ButtonType from './Button-Type';
 import { CiUser } from 'react-icons/ci';
+import useNetwork from '../hooks/useNetwork';
+import { loggedIn } from '../slices/user/userSlice';
 
 const menuItems = [
     {
@@ -49,7 +51,7 @@ function Logo() {
         <div className="inline-flex items-center space-x-2">
             <Link to="/">
                 <img
-                    src="jooland.png"
+                    src="/jooland.png"
                     alt="logo"
                     loading="lazy"
                     height="50"
@@ -116,6 +118,14 @@ export function Navbar() {
     };
 
     const isAuthHandler = () => {
+        const dispatch = useDispatch();
+        const { apiHandler } = useNetwork();
+        useEffect(() => {
+            (async () => {
+                const userResponse = await apiHandler('/user');
+                dispatch(loggedIn(userResponse.data.data));
+            })();
+        }, []);
         if (isAuth) {
             return <RightSideOfNav />;
         } else {
